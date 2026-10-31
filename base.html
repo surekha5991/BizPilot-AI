@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}BizPilot AI{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{% url 'dashboard' %}"><span class="brand-mark">B</span> BizPilot <em>AI</em></a>
+  <nav><a href="{% url 'dashboard' %}">Dashboard</a><a href="{% url 'products' %}">Inventory</a><a href="{% url 'sale_add' %}">Record sale</a><a href="{% url 'assistant' %}">AI Assistant</a></nav>
+</header>
+<main class="container">
+  {% if messages %}{% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer>BizPilot AI · A small-business operations prototype</footer>
+</body></html>

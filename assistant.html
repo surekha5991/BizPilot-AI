@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}Business Assistant · BizPilot AI{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">BIZPILOT ASSISTANT</p><h1>Your business, explained.</h1><p class="muted">Ask a question and get a response grounded in your current inventory and sales records.</p></div></div>
+<div class="assistant-layout"><section class="panel"><h2>Ask your question</h2><form method="post" class="ask-form">{% csrf_token %}<label for="question">What would you like to know?</label><input id="question" name="question" value="{{ question }}" placeholder="e.g. Which products need restocking?" required><button class="button" type="submit">Ask BizPilot</button></form>
+{% if answer %}<div class="answer"><p class="eyebrow">ANSWER</p>{{ answer }}</div>{% endif %}</section>
+<section class="panel"><p class="eyebrow">LIVE BUSINESS INSIGHTS</p><h2>What the data says</h2>{% for item in insights %}<div class="insight"><span>✦</span><p>{{ item }}</p></div>{% endfor %}</section></div>
+<p class="disclaimer">Prototype note: responses are generated from application data and simple intent matching. This version does not call an external generative-AI service.</p>
+{% endblock %}

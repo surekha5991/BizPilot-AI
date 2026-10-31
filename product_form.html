@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block content %}
+<div class="narrow"><p class="eyebrow">INVENTORY</p><h1>{{ heading }}</h1><p class="muted">Enter accurate product and stock information.</p>
+<form method="post" class="panel form-card">{% csrf_token %}{{ form.as_p }}<div class="form-actions"><a class="button secondary" href="{% url 'products' %}">Cancel</a><button class="button" type="submit">Save product</button></div></form></div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}Inventory · BizPilot AI{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">CATALOGUE</p><h1>Inventory</h1><p class="muted">Manage products, prices and stock levels.</p></div><a class="button" href="{% url 'product_add' %}">+ Add product</a></div>
+<div class="panel table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>In stock</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+{% for p in products %}<tr><td><b>{{ p.name }}</b></td><td>{{ p.category|default:"—" }}</td><td>₹{{ p.price|floatformat:2 }}</td><td>{{ p.stock }}</td><td>{% if p.is_low_stock %}<span class="pill warning">Low stock</span>{% else %}<span class="pill good">Healthy</span>{% endif %}</td><td class="actions"><a href="{% url 'product_edit' p.pk %}">Edit</a><form method="post" action="{% url 'product_delete' p.pk %}" onsubmit="return confirm('Delete this product?')">{% csrf_token %}<button class="link danger" type="submit">Delete</button></form></td></tr>
+{% empty %}<tr><td colspan="6" class="empty">No products yet. Add your first product.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
